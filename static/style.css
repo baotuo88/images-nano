@@ -1,0 +1,178 @@
+/* ===== 设计变量 ===== */
+:root{
+  --bg:#0f0f11;
+  --panel:#17181b;
+  --panel-2:#1d1f24;
+  --text:#e7eaf0;
+  --muted:#9aa3b2;
+  --brand1:#ff6a00;
+  --brand2:#ff3c3c;
+  --stroke:#2b2e35;
+  --ring: #ff7d33;
+  --radius:16px;
+  --shadow: 0 12px 30px rgba(0,0,0,.4);
+}
+
+/* ===== 全局 ===== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(255,106,0,.12), transparent 60%),
+    radial-gradient(1000px 600px at 110% 10%, rgba(255,60,60,.10), transparent 60%),
+    var(--bg);
+}
+
+/* ===== 顶部导航 ===== */
+.nb-nav{
+  position: sticky; top:0; z-index:10;
+  backdrop-filter: blur(10px);
+  background: rgba(15,15,17,.65);
+  border-bottom: 1px solid var(--stroke);
+}
+.nb-nav__inner{
+  max-width: 1200px; margin: 0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 12px 20px;
+}
+.nb-brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}
+.nb-logo{font-size:22px}
+.nb-title{font-weight:700;letter-spacing:.3px}
+.nb-actions{display:flex;gap:10px}
+
+/* 按钮 */
+.nb-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 14px; border-radius:10px; border:1px solid var(--stroke);
+  background:var(--panel-2); color:var(--text);
+  cursor:pointer; text-decoration:none; transition:.25s ease;
+}
+.nb-btn .nb-ico{opacity:.9}
+.nb-btn:hover{border-color:#3a3e47; transform: translateY(-1px)}
+.nb-btn--primary{
+  border:0;
+  background: linear-gradient(100deg, var(--brand1), var(--brand2));
+  box-shadow: 0 8px 24px rgba(255,60,60,.35);
+}
+.nb-btn--primary:hover{filter:saturate(1.05) brightness(1.02)}
+.nb-btn--ghost{background:transparent}
+
+/* 主体布局 */
+.nb-main{padding: 24px 16px}
+.main-container{
+  max-width: 1200px; margin: 0 auto;
+  display:grid; grid-template-columns: 420px 1fr; gap: 20px;
+}
+.nb-card{
+  background: linear-gradient(180deg, rgba(29,31,36,.78), rgba(23,24,27,.78));
+  border:1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  padding: 18px;
+}
+
+/* 标题 */
+h1.title{display:none} /* 顶栏已有品牌，此处隐藏 */
+h2{
+  font-size: 14px; font-weight:700; margin: 8px 0 10px;
+  color: var(--brand1);
+}
+
+/* 表单元素 */
+textarea, input, select{
+  width:100%; border-radius:12px; border:1px solid var(--stroke);
+  background:var(--panel-2); color:var(--text);
+  padding:12px 14px; font-size:14px; outline:none;
+}
+textarea::placeholder{color:#7c8596}
+textarea:focus, input:focus, select:focus{box-shadow: 0 0 0 2px rgba(255,122,51,.25)}
+.tpl-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+.tpl-btn{
+  padding:8px 12px; border-radius:10px; border:1px solid var(--stroke);
+  background:transparent; color:var(--muted); cursor:pointer; transition:.2s;
+}
+.tpl-btn:hover{color:var(--text); border-color:#3a3e47; background:#1b1d21}
+
+/* 参数网格 */
+.param-grid{
+  display:grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.nb-field{display:flex; flex-direction:column; gap:6px}
+.nb-field--full{grid-column: 1 / -1}
+
+/* 上传区 */
+.upload-area{
+  border:1.5px dashed #3a3e47; border-radius:14px;
+  background: #1a1c21; text-align:center; padding:28px;
+  transition:.25s ease; cursor:pointer;
+}
+.upload-area:hover, .upload-area.drag-over{
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px rgba(255,125,51,.15);
+  background: #1e2026;
+}
+#thumbnails-container{
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;
+}
+.thumbnail-wrapper{
+  position:relative; width:86px; height:86px; border-radius:10px; overflow:hidden;
+  border:1px solid var(--stroke);
+}
+.thumbnail-wrapper img{width:100%; height:100%; object-fit:cover}
+.thumbnail-wrapper .remove-btn{
+  position:absolute; top:6px; right:6px; width:22px; height:22px;
+  border:none; border-radius:50%; background:rgba(0,0,0,.55); color:#fff; cursor:pointer;
+}
+
+/* 生成按钮与加载 */
+.spinner{width:18px;height:18px;border:2px solid transparent;border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite}
+.hidden{display:none!important}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* 结果区域 */
+.nb-result{
+  min-height: 320px;
+  background:#14161a; border:1px solid var(--stroke);
+  border-radius:12px; padding:14px;
+  display:flex; align-items:center; justify-content:center;
+  color:#8a93a7;
+}
+.nb-grid{
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap:14px;
+}
+.nb-card-img{
+  background:#14161a; border:1px solid var(--stroke); border-radius:12px; padding:10px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.nb-card-img img{width:100%; border-radius:10px; display:block}
+.nb-toolbar{display:flex; gap:8px; flex-wrap:wrap}
+.nb-toolbar .nb-btn{padding:8px 10px; font-size:13px}
+
+/* 历史 */
+.nb-history-title{margin-top:16px}
+.nb-history{
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(110px,1fr)); gap:10px;
+}
+.nb-history img{
+  width:100%; border-radius:10px; border:1px solid var(--stroke); transition:.2s; cursor:pointer
+}
+.nb-history img:hover{transform:scale(1.03); box-shadow: 0 0 0 2px rgba(255,122,51,.25)}
+
+/* 对话框 */
+.nb-dialog{
+  border:1px solid var(--stroke); border-radius:14px; padding:0; background:var(--panel);
+  color:var(--text); width:min(560px, 92vw);
+}
+.nb-dialog form{padding:16px}
+.nb-dialog h3{margin:0 0 10px}
+.nb-dialog textarea{min-height:120px}
+.nb-dialog__actions{display:flex; gap:10px; justify-content:flex-end; margin-top:12px}
+
+/* 自适应 */
+@media (max-width: 980px){
+  .main-container{grid-template-columns: 1fr}
+}
